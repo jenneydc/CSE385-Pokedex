@@ -14,7 +14,7 @@ public class Main
             // register the driver 
         String sDriverName = "org.sqlite.JDBC";
         Class.forName(sDriverName);
-        String sDbUrl = "jdbc:sqlite:Pokebase(Minus Sprites).db";
+        String sDbUrl = "jdbc:sqlite:Pokebase.db";
         Connection conn = DriverManager.getConnection(sDbUrl);
         
         StandardQueries std = new StandardQueries();
