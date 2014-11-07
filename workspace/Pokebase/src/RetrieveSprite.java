@@ -1,3 +1,5 @@
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,6 +11,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 public class RetrieveSprite {
@@ -22,11 +29,15 @@ public class RetrieveSprite {
 		InputStream iss = null;
 		OutputStream os = null;
 		
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		
+		
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
 			
-			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 63";
+			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 142";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -36,16 +47,12 @@ public class RetrieveSprite {
 				
 				is = new ByteArrayInputStream(pic);
 				
+				BufferedImage dbImage = ImageIO.read(is);
 				
-				File picture = new File("abra.png");
-				FileOutputStream fos = new FileOutputStream(picture);
+				frame.getContentPane().setLayout(new FlowLayout());
+				frame.getContentPane().add(new JLabel(new ImageIcon(dbImage)));
+				frame.pack();
 				
-				
-				// doesn't actually print anything out.... working on it
-				is.read(pic);
-				fos.write(pic);
-			
-				fos.close();
 			}
 			
 		} finally{
