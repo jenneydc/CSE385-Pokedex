@@ -1,7 +1,4 @@
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +19,7 @@ public class StandardQueries {
         String sDriverName = "org.sqlite.JDBC";
         Class.forName(sDriverName);
         String sDbUrl = "jdbc:sqlite:Pokebase.db";
-        Connection conn = DriverManager.getConnection(sDbUrl);
+        conn = DriverManager.getConnection(sDbUrl);
     }
     
     /* example of a query on the database
@@ -97,25 +94,80 @@ public class StandardQueries {
     + "PRIMARY KEY(HabitatID) "
     + ")";
     
-    //search queries
-    String NameSearch = "SELECT * "
-            + "FROM Pokemon "
-            + "WHERE Name = ";
+    /**
+     * Searches the Pokemon table for the Pokemon with the specified name.
+     * 
+     * @param name		: the name of the Pokemon
+     * @return
+     */
+    ResultSet searchName(String name) {
+    	try {
+    		Statement search = this.conn.createStatement();
+        	String query = "SELECT * FROM Pokemon WHERE Name = " + "'" + name + "'";
+        	
+        	return search.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
     
-    String TypeSearch = "SELECT * "
-            + "FROM Pokemon AS P, Type AS T "
-            + "WHERE (P.Type1=T.TypeID OR P.Type2 = T.TypeID) AND "
-            + "T.TypeID = T.TypeName AND T.TypeName = ";
+    /**
+     * Searches the Pokemon table for the Pokemon with the specified number.
+     * 
+     * @param num		: the Pokemon number
+     * @return
+     */
+    ResultSet searchNumber(int num) {
+    	try {
+    		Statement search = this.conn.createStatement();
+        	String query = "SELECT * FROM Pokemon WHERE ID = " + num;
+        	
+        	return search.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
     
-    String HabitatSearch = "SELECT * "
-            + "FROM Pokemon AS P, Habitat AS H "
-            + "WHERE H.HabitatID = P.HabitatID AND H.HabitatName = ";
+    /**
+     * Searches the Pokemon table for the Pokemon with the specified type.
+     * 
+     * @param type		: the Pokemon type
+     * @return
+     */
+    ResultSet searchType(String type) {
+    	try {
+    		Statement search = this.conn.createStatement();
+        	String query = "SELECT * "
+        			+ "FROM Pokemon AS P, Types AS T "
+        			+ "WHERE (P.Type1=T.TypeID OR P.Type2 = T.TypeID) AND "
+        			+ "T.name = " + "'" + type + "'";
+        	
+        	return search.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
     
-    String NumberSearch = "SELECT * "
-            + "FROM Pokemon "
-            + "WHERE ID = ";
-    
-    // insert statement
-    
-    
+    /**
+     * Searches the Pokemon table for the Pokemon with the specified habitat.
+     * 
+     * @param type		: the Pokemon habitat
+     * @return
+     */
+    ResultSet searchHabitat(String habitat) {
+    	try {
+    		Statement search = this.conn.createStatement();
+        	String query = "SELECT * FROM Pokemon AS P, Habitats AS H "
+        			+ "WHERE H.HabitatID = P.HabitatID "
+        			+ "AND H.Name = " + "'" + habitat + "'";
+        	
+        	return search.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
 }
