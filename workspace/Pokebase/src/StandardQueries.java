@@ -1,3 +1,8 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +14,24 @@
  * @author Drew Jenney
  */
 public class StandardQueries {
+    
+    Connection conn;
+    
+    public StandardQueries() throws ClassNotFoundException, SQLException {
+        // register the driver 
+        String sDriverName = "org.sqlite.JDBC";
+        Class.forName(sDriverName);
+        String sDbUrl = "jdbc:sqlite:Pokebase.db";
+        Connection conn = DriverManager.getConnection(sDbUrl);
+    }
+    
+    /* example of a query on the database
+        Statement search = std.conn.createStatement();
+        ResultSet Machoke = search.executeQuery(std.NameSearch+"'Machoke'");
+        
+        System.out.print(Machoke.getString("Name"));
+        */
+    
     //create statements
     
     String CreatePokemonTable = "CREATE TABLE POKEMON "
