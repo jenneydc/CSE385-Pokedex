@@ -14,12 +14,22 @@ public class Main
 	{
         
         StandardQueries std = new StandardQueries();
+        
+        
+        ResultSet set = std.searchHabitat("Grasslands");
+        
+        while (set.next()) {
+        	System.out.println(set.getString("Id"));
+        }
+        
+        /*
         SearchPanel pane = new SearchPanel(std);
         
         JFrame frame = new JFrame();
         frame.setContentPane(pane);
         frame.pack();
         frame.setVisible(true);
+        */
         
 	}
 
