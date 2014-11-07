@@ -51,8 +51,8 @@ public class StandardQueries {
 
     String CreateTableSprites = "CREATE TABLE SPRITES "
     + "(PokemonID		INT			NOT NULL, "
-    + "Picture			IMAGE			NOT NULL, "
-    + "ShinyPicture		IMAGE, "
+    + "Picture			BLOB			NOT NULL, "
+    + "ShinyPicture		BLOB, "
     + "PRIMARY KEY(PokemonID) "
     + ")";
 
@@ -92,6 +92,7 @@ public class StandardQueries {
             + "FROM Pokemon "
             + "WHERE ID = ";
     
+    // insert statement
     
     
 }

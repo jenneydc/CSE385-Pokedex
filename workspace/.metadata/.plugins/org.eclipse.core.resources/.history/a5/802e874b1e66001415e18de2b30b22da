@@ -1,0 +1,52 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+public class RetrieveSprite {
+
+	public static void main(String[] args) throws Exception{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		InputStream is = null;
+		InputStream iss = null;
+		OutputStream os = null;
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
+			
+			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 63";
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while (rs.next()){
+				int id = rs.getInt(1);
+				File picture = new File("C:\\abra.png");
+				FileOutputStream fos = new FileOutputStream(picture);
+				//File shinyPicture = new File("C:\\abra (1).png");
+				//FileOutputStream fos2 = new FileOutputStream(shinyPicture);
+				
+				byte[] buffer = new byte[1];
+				is = rs.getBinaryStream(2);
+				//iss = rs.getBinaryStream(3);
+				
+				while (is.read(buffer) > 0)
+					fos.write(buffer);
+				fos.close();
+			}
+		} finally{
+			con.close();
+		}
+
+	}
+
+}
