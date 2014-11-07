@@ -17,8 +17,8 @@ public class InsertSprites {
 		InputStream is = null;
 		InputStream iss = null;
 		
-		File pic = new File("C:/Pokemon_Sprites/exeggcute.png");
-		File shinyPic = new File("C:/Pokemon_Sprites/exeggcute (1).png");
+		File pic = new File("C:/Pokemon_Sprites/butterfree.png");
+		File shinyPic = new File("C:/Pokemon_Sprites/butterfree (1).png");
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -29,7 +29,7 @@ public class InsertSprites {
 			
 			ps = c.prepareStatement("insert into sprites (PokemonID, Picture, ShinyPicture) " + "values (?,?,?)");
 			
-			ps.setInt(1, 102);
+			ps.setInt(1, 12);
 			
 			ps.setBinaryStream(2, is, (int) (pic.length()));
 			
