@@ -1,5 +1,8 @@
 
 import java.sql.Connection;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,6 +18,8 @@ public class SearchPanel extends javax.swing.JPanel {
 
     StandardQueries std;
     boolean searchMode = true;
+    Object[] SearchList = {"Show All", "Name", "Type", "Number", "Habitat"};
+    Object[] TeamList = {};
     
     /**
      * Creates new form SearchPanel
@@ -22,21 +27,101 @@ public class SearchPanel extends javax.swing.JPanel {
     public SearchPanel(StandardQueries std) {
         initComponents();
         this.std = std;
+        
+        this.jButton1.setVisible(!searchMode);
+        this.jButton2.setVisible(!searchMode);
+        this.jButton3.setVisible(!searchMode);
+        this.jButton4.setVisible(!searchMode);
     }
     // switch from Search to Team mode or vice versa
     public void changeMode() {
             if(searchMode) {
                 searchMode = false;
                 this.jButton5.setText("Search");
+                this.jComboBox1.setModel(new DefaultComboBoxModel());
+                setTeamTable();
             } else {
                 searchMode = true;
                 this.jButton5.setText("Teams");
+                this.jComboBox1.setModel(new DefaultComboBoxModel(SearchList));
+                setSearchTable();
             }
             
-            this.jButton1.setVisible(searchMode);
-            this.jButton2.setVisible(searchMode);
-            this.jButton3.setVisible(searchMode);
-            this.jButton4.setVisible(searchMode);
+            this.jButton1.setVisible(!searchMode);
+            this.jButton2.setVisible(!searchMode);
+            this.jButton3.setVisible(!searchMode);
+            this.jButton4.setVisible(!searchMode);
+    }
+    
+    void setSearchTable() {
+
+        
+        this.jTable1.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Number"); 
+        this.jTable1.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Name");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Type 1");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(3).setHeaderValue("Type 2");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(4).setHeaderValue("Sprite");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Shiny Sprite");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Height");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Weight");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setHeaderValue("HP");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setHeaderValue("Att");
+        //this.jTable1.getTableHeader().getColumnModel().getColumn(10).setHeaderValue("Def");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(50);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMinWidth(50);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setWidth(50);
+        //this.jTable1.getTableHeader().getColumnModel().getColumn(11).setHeaderValue("Sp.Att");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMinWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setWidth(75);
+        //this.jTable1.getTableHeader().getColumnModel().getColumn(12).setHeaderValue("Sp.Def");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMaxWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMinWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setWidth(75);
+        //this.jTable1.getTableHeader().getColumnModel().getColumn(13).setHeaderValue("Spd");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMaxWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMinWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setWidth(75);
+        //this.jTable1.getTableHeader().getColumnModel().getColumn(14).setHeaderValue("Habitat");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMaxWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMinWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setWidth(75);
+        
+        repaint();
+    }
+    
+    void setTeamTable() {
+        
+        this.jTable1.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Team Name"); 
+        this.jTable1.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Team Size");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Pokemon 1");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(3).setHeaderValue("Pokemon 2");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(4).setHeaderValue("Pokemon 3");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Pokemon 4");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Pokemon 5");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Pokemon 6");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMinWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMaxWidth(0);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setWidth(0);
+        repaint();
     }
 
     /**
@@ -112,19 +197,12 @@ public class SearchPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Number", "Name", "Sprite", "Shiny Sprite", "Height", "Weight", "HP", "Att", "Def", "Sp.Attl", "Sp.Def", "Spd"
+                "Number", "Name", "Type 1", "Type 2", "Sprite", "Shiny Sprite", "Height", "Weight", "HP", "Att", "Def", "Sp.Attl", "Sp.Def", "Spd", "Habitat"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -134,20 +212,6 @@ public class SearchPanel extends javax.swing.JPanel {
         jTable1.setSurrendersFocusOnKeystroke(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
-            jTable1.getColumnModel().getColumn(8).setResizable(false);
-            jTable1.getColumnModel().getColumn(9).setResizable(false);
-            jTable1.getColumnModel().getColumn(10).setResizable(false);
-            jTable1.getColumnModel().getColumn(11).setResizable(false);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -223,7 +287,7 @@ public class SearchPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        changeMode();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
