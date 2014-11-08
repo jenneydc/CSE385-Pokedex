@@ -1,5 +1,5 @@
 // Author: Kyle Busdieker
-// Purpose: Retrieves a pokemon sprite or shiny sprite from the Pokebase database as a byte[]
+// Purpose: Retrieves a pokemon sprite and shiny sprite from the Pokebase database
 
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
@@ -33,7 +33,12 @@ public class RetrieveSprite {
 	byte[] shinySprite = null;
 	
 	public byte[] retrieveSprite (int pokemonID) throws Exception{
-	
+		/*JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		/*frame.getContentPane().setLayout(new FlowLayout());
+				frame.getContentPane().add(new JLabel(new ImageIcon(dbImage)));
+				frame.pack();*/
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
