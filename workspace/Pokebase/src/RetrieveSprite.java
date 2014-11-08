@@ -31,13 +31,14 @@ public class RetrieveSprite {
 		
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
 			
-			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 142";
+			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 114";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
