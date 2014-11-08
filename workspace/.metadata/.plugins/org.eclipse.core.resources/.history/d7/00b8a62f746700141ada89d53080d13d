@@ -23,7 +23,6 @@ public class InsertSprites {
 	int ID;
 	String Name;
 	
-	// Used to insert an image file into the Pokebase database
 	public void insert(int pokemonID, String pokemonName){
 		
 		ID = pokemonID;

@@ -14,7 +14,7 @@ public class GenerateSprite {
 	BufferedImage sprite = null;
 	InputStream is = null;
 	
-	// Converts a pokemon's sprite, stored as a byte[], into an image
+	
 	public BufferedImage convert(byte[] spriteArray) throws Exception {
 		
 		is = new ByteArrayInputStream(spriteArray);

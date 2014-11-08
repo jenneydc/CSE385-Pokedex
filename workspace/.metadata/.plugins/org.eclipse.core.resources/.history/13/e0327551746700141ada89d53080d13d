@@ -32,7 +32,6 @@ public class RetrieveSprite {
 	byte[] sprite = null;
 	byte[] shinySprite = null;
 	
-	// Retrieves a pokemon's sprite from the Pokebase database as a byte[]
 	public byte[] retrieveSprite (int pokemonID) throws Exception{
 	
 		try {
@@ -55,7 +54,6 @@ public class RetrieveSprite {
 
 	}
 	
-	// Retrieves a pokemon's shiny sprite from the Pokebase database as byte[]
 	public byte[] retrieveShinySprite (int pokemonID) throws Exception {
 		
 		try {
