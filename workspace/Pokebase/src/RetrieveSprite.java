@@ -1,3 +1,6 @@
+// Author: Kyle Busdieker
+// Purpose: Retrieves a pokemon sprite or shiny sprite from the Pokebase database as a byte[]
+
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -19,46 +22,58 @@ import javax.swing.JLabel;
 
 
 public class RetrieveSprite {
-
-	public static void main(String[] args) throws Exception{
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		InputStream is = null;
-		InputStream iss = null;
-		OutputStream os = null;
-		
-		JFrame frame = new JFrame();
-		frame.setVisible(true);
-		
-		
+	
+	Connection con = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	InputStream is = null;
+	InputStream iss = null;
+	OutputStream os = null;
+	byte[] sprite = null;
+	byte[] shinySprite = null;
+	
+	// Retrieves a pokemon's sprite from the Pokebase database as a byte[]
+	public byte[] retrieveSprite (int pokemonID) throws Exception{
+	
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
 			
-			String query = "select pokemonid, picture, shinyPicture from sprites where pokemonid = 142";
+			String query = "select picture from sprites where pokemonid = " + pokemonID;
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while (rs.next()){
-				int id = rs.getInt(1);
-				byte[] pic = rs.getBytes(2);
-				
-				is = new ByteArrayInputStream(pic);
-				
-				BufferedImage dbImage = ImageIO.read(is);
-				
-				frame.getContentPane().setLayout(new FlowLayout());
-				frame.getContentPane().add(new JLabel(new ImageIcon(dbImage)));
-				frame.pack();
-				
+				sprite = rs.getBytes(1);
 			}
+			
+			return sprite;
 			
 		} finally{
 			con.close();
 		}
 
+	}
+	
+	// Retrieves a pokemon's shiny sprite from the Pokebase database as byte[]
+	public byte[] retrieveShinySprite (int pokemonID) throws Exception {
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			con = DriverManager.getConnection("jdbc:sqlite:Pokebase.db");
+			
+			String query = "select shinypicture from sprites where pokemonid = " + pokemonID;
+			ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				shinySprite = rs.getBytes(1);
+			}
+			
+			return shinySprite;
+		} finally{
+			con.close();
+		}
 	}
 
 }

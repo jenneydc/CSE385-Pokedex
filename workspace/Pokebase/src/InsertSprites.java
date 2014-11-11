@@ -1,3 +1,7 @@
+// Author: Kyle Busdieker
+// Purpose: Allows you to insert an image of a pokemon sprite into the Pokebase database
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,16 +13,24 @@ import java.sql.SQLException;
 
 
 public class InsertSprites {
-
-	public static void main(String[] args) {
+	
+	Connection c = null;
+	PreparedStatement ps = null;
+	InputStream is = null;
+	InputStream iss = null;
+	File pic = null;
+	File shinyPic = null;
+	int ID;
+	String Name;
+	
+	// Used to insert an image file into the Pokebase database
+	public void insert(int pokemonID, String pokemonName){
 		
-		Connection c = null;
-		PreparedStatement ps = null;
-		InputStream is = null;
-		InputStream iss = null;
+		ID = pokemonID;
+		Name = pokemonName;
 		
-		File pic = new File("C:/Pokemon_Sprites/exeggcute.png");
-		File shinyPic = new File("C:/Pokemon_Sprites/exeggcute (1).png");
+		pic = new File("C:/Pokemon_Sprites/" + Name + ".png");
+		shinyPic = new File("C:/Pokemon_Sprites/" + Name +  " (1).png");
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -29,10 +41,9 @@ public class InsertSprites {
 			
 			ps = c.prepareStatement("insert into sprites (PokemonID, Picture, ShinyPicture) " + "values (?,?,?)");
 			
-			ps.setInt(1, 102);
+			ps.setInt(1, ID);
 			
 			ps.setBinaryStream(2, is, (int) (pic.length()));
-			
 			ps.setBinaryStream(3, iss, (int) (shinyPic.length()));
 			
 			ps.executeUpdate();
