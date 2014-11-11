@@ -22,14 +22,14 @@ public class Main
         	System.out.println(set.getString("Id"));
         }
         
-        /*
+      
         SearchPanel pane = new SearchPanel(std);
         
         JFrame frame = new JFrame();
         frame.setContentPane(pane);
         frame.pack();
         frame.setVisible(true);
-        */
+        
         
 	}
 
