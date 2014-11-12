@@ -6,8 +6,12 @@ import java.sql.Statement;
 import javax.swing.JFrame;
 
 
-public class Main {
-	public static void main(String[] args) throws Exception	{
+public class Main
+{
+	//dfhjkhh
+	//Testing..1..2..3
+	public static void main(String[] args) throws Exception
+	{
         
         StandardQueries std = new StandardQueries();
         
