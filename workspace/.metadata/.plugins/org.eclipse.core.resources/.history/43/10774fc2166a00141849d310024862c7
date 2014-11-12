@@ -1,0 +1,42 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+
+
+public class Main {
+	public static void main(String[] args) throws Exception	{
+        
+        StandardQueries std = new StandardQueries();
+        
+        /*
+        ResultSet set = std.searchHabitat("Grasslands");
+        
+        while (set.next()) {
+        	System.out.println(set.getString("Id"));
+        }
+        */
+        
+        insertingSprites();
+        SearchPanel pane = new SearchPanel(std);
+        
+        JFrame frame = new JFrame();
+        frame.setContentPane(pane);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+	}
+	
+	public static void insertingSprites() {
+		int[] pokemonIDs = new int[152];
+		pokemonIDs[0] = -1;
+		for (int i = 1; i < 152; i++)
+			pokemonIDs[i] = i;
+		for (int i = 1; i < 152; i++)
+			System.out.println(pokemonIDs[i]);
+	}
+
+}
