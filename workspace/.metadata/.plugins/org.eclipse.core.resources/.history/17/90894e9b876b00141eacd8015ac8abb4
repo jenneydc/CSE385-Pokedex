@@ -15,9 +15,7 @@ import javax.imageio.ImageIO;
 
 // Author: Kyle Busdieker
 // Purpose: Insert and retrieve Pokemon sprites into/from the Pokebase database
-//	as well as convert a retrieved sprite into a usable image.
-//	Also has functionality to add the first 151 pokemon sprites and shiny sprites
-//	into the Pokebase database with one method call.
+//			as well as convert a retrieved sprite into a usable image.
 
 
 public class ManipulateSprites {
