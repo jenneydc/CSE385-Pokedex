@@ -1,14 +1,13 @@
 INDEX VERSION 1.127+C:\Users\Kyle\Documents\School_Documents\Junior_Year\CSE_385\Project\CSE385-Pokedex\workspace\.metadata\.plugins\org.eclipse.jdt.core
 683184654.index
-1144188029.index
 4018706093.index
-2292600799.index
+1144188029.index
 1820024274.index
 2706502329.index
 3811914937.index
-3256372620.index
-1075156909.index
 4149142647.index
+1075156909.index
+3256372620.index
 384216248.index
 2708239607.index
 3626931047.index
