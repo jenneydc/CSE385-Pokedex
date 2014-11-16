@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -63,9 +64,31 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jTable1.getTableHeader().getColumnModel().getColumn(4).setHeaderValue("Height");
         this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Weight");
         this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Habitat");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setHeaderValue("Evolves From");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Evolves From");
         
+        refreshSearchTable();
         repaint();
+    }
+    
+    void refreshSearchTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            
+            ResultSet getAllPokemon = std.getAll();
+        
+            while(getAllPokemon.next()) {
+                model.addRow(new Object[]{getAllPokemon.getInt("ID"), 
+                    getAllPokemon.getInt("Name"), 
+                    getAllPokemon.getInt("Type1Name"),
+                    getAllPokemon.getInt("Type2Name"),
+                    getAllPokemon.getInt("Height"),
+                    getAllPokemon.getInt("Weight"),
+                    getAllPokemon.getInt("Habitat")});
+            }
+        } catch(Exception ex) {
+            System.err.printf(ex.getMessage());
+          }
     }
     
     void setTeamTable() {
@@ -78,7 +101,14 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Pokemon 4");
         this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Pokemon 5");
         this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Pokemon 6");
+        
+        refreshTeamTable();
+        
         repaint();
+    }
+    
+    void refreshTeamTable() {
+     
     }
 
     /**
