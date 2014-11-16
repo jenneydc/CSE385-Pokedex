@@ -60,32 +60,10 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jTable1.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Name");
         this.jTable1.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Type 1");
         this.jTable1.getTableHeader().getColumnModel().getColumn(3).setHeaderValue("Type 2");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(4).setHeaderValue("Sprite");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Shiny Sprite");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Height");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Weight");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setHeaderValue("HP");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setHeaderValue("Att");
-        //this.jTable1.getTableHeader().getColumnModel().getColumn(10).setHeaderValue("Def");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(50);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMinWidth(50);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setWidth(50);
-        //this.jTable1.getTableHeader().getColumnModel().getColumn(11).setHeaderValue("Sp.Att");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMinWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setWidth(75);
-        //this.jTable1.getTableHeader().getColumnModel().getColumn(12).setHeaderValue("Sp.Def");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMaxWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMinWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setWidth(75);
-        //this.jTable1.getTableHeader().getColumnModel().getColumn(13).setHeaderValue("Spd");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMaxWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMinWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setWidth(75);
-        //this.jTable1.getTableHeader().getColumnModel().getColumn(14).setHeaderValue("Habitat");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMaxWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMinWidth(75);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setWidth(75);
+        this.jTable1.getTableHeader().getColumnModel().getColumn(4).setHeaderValue("Height");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Weight");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Habitat");
+        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setHeaderValue("Evolves From");
         
         repaint();
     }
@@ -100,27 +78,6 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jTable1.getTableHeader().getColumnModel().getColumn(5).setHeaderValue("Pokemon 4");
         this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Pokemon 5");
         this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Pokemon 6");
-        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(8).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(9).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(10).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(11).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(12).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(13).setWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMinWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setMaxWidth(0);
-        this.jTable1.getTableHeader().getColumnModel().getColumn(14).setWidth(0);
         repaint();
     }
 
@@ -197,11 +154,11 @@ public class SearchPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Number", "Name", "Type 1", "Type 2", "Sprite", "Shiny Sprite", "Height", "Weight", "HP", "Att", "Def", "Sp.Attl", "Sp.Def", "Spd", "Habitat"
+                "Number", "Name", "Type 1", "Type 2", "Height", "Weight", "Habitat", "Evolves From"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
