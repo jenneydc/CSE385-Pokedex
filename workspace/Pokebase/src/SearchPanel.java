@@ -1,7 +1,8 @@
 import java.sql.ResultSet;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,6 +29,7 @@ public class SearchPanel extends javax.swing.JPanel {
         this.std = std;
         
         AddListeners();
+        setSearchTable();
         
         this.jButton1.setVisible(!searchMode);
         this.jButton2.setVisible(!searchMode);
@@ -42,7 +44,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 int row = jTable1.rowAtPoint(evt.getPoint());
                 int col = jTable1.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    showDetailDialog(jTable1.getModel().getValueAt(row, col));
+                    new PokemonDetail(null, std, (int)jTable1.getModel().getValueAt(row, 0));
                 }
             }
         });
@@ -80,7 +82,7 @@ public class SearchPanel extends javax.swing.JPanel {
         this.jTable1.getTableHeader().getColumnModel().getColumn(6).setHeaderValue("Habitat");
         this.jTable1.getTableHeader().getColumnModel().getColumn(7).setHeaderValue("Evolves From");
         
-        //refreshSearchTable();
+        refreshSearchTable();
         repaint();
     }
     
@@ -93,13 +95,13 @@ public class SearchPanel extends javax.swing.JPanel {
         
             while(getAllPokemon.next()) {
                 model.addRow(new Object[]{getAllPokemon.getInt("ID"), 
-                    getAllPokemon.getString("Name"), 
-                    getAllPokemon.getString("Type1Name"),
-                    getAllPokemon.getString("Type2Name"),
-                    getAllPokemon.getInt("Height"),
-                    getAllPokemon.getInt("Weight"),
-                    getAllPokemon.getString("Habitat"),
-                    getAllPokemon.getString("Evolves From")});
+                    getAllPokemon.getObject("Name"), 
+                    getAllPokemon.getObject("Type1Name"),
+                    getAllPokemon.getObject("Type2Name"),
+                    getAllPokemon.getObject("Height"),
+                    getAllPokemon.getObject("Weight"),
+                    getAllPokemon.getObject("Hab"),
+                    getAllPokemon.getObject("EvolvesFrom")});
             }
         } catch(Exception ex) {
             System.err.printf(ex.getMessage());
@@ -124,10 +126,6 @@ public class SearchPanel extends javax.swing.JPanel {
     
     void refreshTeamTable() {
      
-    }
-    
-    void showDetailDialog(int id) {
-        new PokemonDetail(null, std, id);
     }
 
     /**

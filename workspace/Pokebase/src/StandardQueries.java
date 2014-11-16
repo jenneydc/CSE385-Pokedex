@@ -38,7 +38,7 @@ public class StandardQueries {
     				+ "LEFT OUTER JOIN (SELECT TypeID AS T2, Name AS Type2Name FROM Types) ON type2 = t2 "
     				+ "NATURAL JOIN (SELECT Name AS Hab, HabitatID FROM Habitats) "
     				+ "LEFT OUTER JOIN (SELECT id as tempid, evolvesfrom from pokemon "
-    				+ "LEFT OUTER JOIN (SELECT evolvedid, name as evolvesfrom from pokemon, evolutions WHERE pokemon.id = baby.id) on id = evolvedid) on id = tempid";
+    				+ "LEFT OUTER JOIN (SELECT evolvedid, name as evolvesfrom from pokemon, evolutions WHERE pokemon.id = babyid) on id = evolvedid) on id = tempid";
     		
     		return search.executeQuery(query);
     		

@@ -29,7 +29,7 @@ public class PokemonDetail extends javax.swing.JDialog {
         jTable1.setTableHeader(null);
         populateDetail();
         
-        this.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setVisible(true);
     }
     
@@ -45,7 +45,7 @@ public class PokemonDetail extends javax.swing.JDialog {
         model.setValueAt("Def:", 2, 0);
         model.setValueAt("Sp.Att:", 3, 0);
         model.setValueAt("Sp.Def:", 4, 0);
-        model.setValueAt("Spd", 5, 0);
+        model.setValueAt("Spd:", 5, 0);
     }
     
     void populateTable() {
@@ -58,8 +58,8 @@ public class PokemonDetail extends javax.swing.JDialog {
             model.setValueAt(pokemonInfo.getInt("HP"), 0, 1);
             model.setValueAt(pokemonInfo.getInt("Att"), 1, 1);
             model.setValueAt(pokemonInfo.getInt("Def"), 2, 1);
-            model.setValueAt(pokemonInfo.getInt("Sp.Att"), 3, 1);
-            model.setValueAt(pokemonInfo.getInt("Sp.Def"), 4, 1);
+            model.setValueAt(pokemonInfo.getInt("SpAtt"), 3, 1);
+            model.setValueAt(pokemonInfo.getInt("SpDef"), 4, 1);
             model.setValueAt(pokemonInfo.getInt("Spd"), 5, 1);
             
             
